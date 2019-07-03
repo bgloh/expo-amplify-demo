@@ -1,0 +1,71 @@
+{
+    "identityPoolName": "expoamplifydemobf11e8c7_identitypool_bf11e8c7",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "expoam_bf11e8c7_lambda_log_policy",
+    "openIdLambdaRoleName": "expoam_bf11e8c7_openid_lambda_role",
+    "openIdRolePolicy": "expoam_bf11e8c7_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "expoam_bf11e8c7_openid_lambda_iam_policy",
+    "openIdLogPolicy": "expoam_bf11e8c7_openid_lambda_log_policy",
+    "userPoolName": "expoamplifydemobf11e8c7_userpool_bf11e8c7",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "expoambf11e8c7_sns-role",
+    "roleExternalId": "expoambf11e8c7_role_external_id",
+    "policyName": "expoambf11e8c7-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "expoambf11e8c7_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "expoambf11e8c7_totp_lambda_role",
+    "mfaLambdaLogPolicy": "expoambf11e8c7_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "expoambf11e8c7_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "expoambf11e8c7_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "expoambf11e8c7_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "expoambf11e8c7_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "expoambf11e8c7_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "expoamplifydemobf11e8c7",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email"
+    ]
+}
