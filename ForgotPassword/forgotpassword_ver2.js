@@ -15,11 +15,9 @@ import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
 import awsmobile from '../aws-exports';
 import ResetPassword from './resetpassword';
+import SetNewPassword from './setnewpassword';
 
 Amplify.configure({Auth: awsmobile});
-
-
-
 
 
 
@@ -28,23 +26,27 @@ export default class forgotPassword extends Component{
 constructor(props){
     super(props);
     this.state ={
-        val: 1,
+        isResetPasswordDone : false
     }
-    this.showData = this.showData.bind(this);
+    this.setResetPasswordDone = this.setResetPasswordDone.bind(this);
 }
 
-showData = (data)=>{
-    const res = this.state.val + data;
-    this.setState({val : this.state.val+1});
-    console.log('response:'+this.state.val);
+setResetPasswordDone = ()=>{
+    this.setState({ isResetPasswordDone: true });
 }
+
 
     static navigationOptions = {
         title : 'FORGOT PASSWORD',
       };
  
     render() {       
-        return <ResetPassword handler={this.showData} />
+        let isResetPasswordDone = this.state.isResetPasswordDone;
+
+        if (!isResetPasswordDone)
+            return <ResetPassword handler={this.setResetPasswordDone} /> 
+        else
+         return <SetNewPassword navigation={this.props.navigation}/> 
 
        
 }

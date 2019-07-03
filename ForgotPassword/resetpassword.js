@@ -46,9 +46,15 @@ class ResetPassword extends Component {
                 this.setState({opacity: 0});
                 //this.setState({animating: false});
                 //this.setState({errormessage: data}); 
+
+                 // bring up reset password component
+                this.props.handler();
                 console.log(data);
             })
-            .catch(err => {this.setState({errormessage: err.message})  });
+            .catch(err => {
+                this.setState({errormessage: err.message});
+                console.log(err);
+              });
     };
 
     render(){
