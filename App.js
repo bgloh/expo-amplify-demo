@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import signin from './signin';
-import Home from './Home';
-import SignupScreen from './Friend';
-import forgotPassword from './ForgotPassword';
+import signin from './Signin/signin';
+import SignupScreen from './Signup/signup';
+import forgotPassword from './ForgotPassword/forgotpassword_ver2';
 
-import Amplify from 'aws-amplify'
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
 import awsmobile from './aws-exports'
 
 Amplify.configure(awsmobile)

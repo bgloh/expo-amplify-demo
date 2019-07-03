@@ -10,10 +10,49 @@ import {
     View,
     StyleSheet
 } from 'react-native';
-import Amplify, {Auth} from 'aws-amplify';
-import awsmobile from './aws-exports';
+
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
+import awsmobile from '../aws-exports';
 
 Amplify.configure({Auth: awsmobile});
+
+
+
+// reset password component
+/*class resetPassword extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    email: '',
+    verificationCode :'',
+    errormessage: '',
+    animating: true,
+    opacity: 0
+    }
+  
+
+  resetPassword = ()=>{        
+    // activity indicator
+    if (this.state.email != '')
+    this.setState({opacity: 1});
+   
+    // remove white spaces
+    eMail = this.stripspace(this.state.email);
+    
+    // request reset password
+    Auth.forgotPassword(eMail) 
+        .then(data => {
+            this.setState({opacity: 0});
+            //this.setState({animating: false});
+            //this.setState({errormessage: data}); 
+            console.log(data);
+        })
+        .catch(err => {this.setState({errormessage: err.message})  });
+};
+
+}*/
+
 
 export default class forgotPassword extends Component{
     static navigationOptions = {
@@ -33,13 +72,11 @@ export default class forgotPassword extends Component{
         this.setNewPassword = this.setNewPassword.bind(this);
         this.stripspace = this.stripspace.bind(this);
 
-        // local variables
-        var eMail, passWord;
     }
     stripspace =(input)=>{
         return input.replace(/\s/gi,"");
     };
-    resetPassword = ()=>{
+    resetPassword = ()=>{        
         // activity indicator
         if (this.state.email != '')
         this.setState({opacity: 1});
@@ -58,11 +95,18 @@ export default class forgotPassword extends Component{
             .catch(err => {this.setState({errormessage: err.message})  });
     };
 
-
-    // Collect confirmation code and new password, then
+        // Collect confirmation code and new password, then
     setNewPassword = ()=>{
+      // variables removed from white spaces
+      const email = this.stripspace(this.state.email);
+      const verificationCode = this.stripspace(this.state.verificationCode);
+      const newPassword = this.stripspace(this.state.newPassword);
+
+      // check input fields and start activityIndicator
+      if (email != '' && verificationCode !== '' && newPassword !=='')
         this.setState({opacity: 1});
-        Auth.forgotPasswwordSubmit(eMail,this.state.verificationCode,this.state.newPassword)
+
+        Auth.forgotPasswordSubmit(email,verificationCode,newPassword)
         .then(
             data =>{
                 console.log(data);
@@ -72,9 +116,10 @@ export default class forgotPassword extends Component{
         .catch(err => console.log(err));
     };
     
-    render(){
-        
-        const {navigate} = this.props.navigation;
+    render(){       
+         // local variables
+         //var eMail, passWord;
+         const {navigate} = this.props.navigation;
 
         return (
             <KeyboardAvoidingView behavior="padding">
@@ -134,13 +179,9 @@ export default class forgotPassword extends Component{
 
                   <View style={styles.buttonContainer} >
                   <Button title='SET NEW PASSWORD' 
-                     onPress={()=>this.setNewPassword} ></Button>
+                     onPress={this.setNewPassword} ></Button>
                   </View>
-
-                 
-                  
-                  
-                </View>
+                 </View>
               </ScrollView>
             </KeyboardAvoidingView>
         );

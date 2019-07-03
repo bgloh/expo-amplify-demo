@@ -10,8 +10,10 @@ import {
     View,
     StyleSheet
 } from 'react-native';
-import Amplify, {Auth} from 'aws-amplify';
-import awsmobile from './aws-exports';
+
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
+import awsmobile from '../aws-exports';
 
 Amplify.configure({Auth: awsmobile});
 
