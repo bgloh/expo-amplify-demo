@@ -36,7 +36,6 @@ class ResetPassword extends Component {
         if (this.state.email != '')
         this.setState({opacity: 1});
        
-        this.props.handler(10);
         // remove white spaces
         eMail = this.stripspace(this.state.email);
         
@@ -48,7 +47,7 @@ class ResetPassword extends Component {
                 //this.setState({errormessage: data}); 
 
                  // bring up reset password component
-                this.props.handler();
+                this.props.setResetPasswordDone();
                 console.log(data);
             })
             .catch(err => {

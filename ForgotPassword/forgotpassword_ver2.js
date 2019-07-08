@@ -44,7 +44,7 @@ setResetPasswordDone = ()=>{
         let isResetPasswordDone = this.state.isResetPasswordDone;
 
         if (!isResetPasswordDone)
-            return <ResetPassword handler={this.setResetPasswordDone} /> 
+            return <ResetPassword setResetPasswordDone={this.setResetPasswordDone} /> 
         else
          return <SetNewPassword navigation={this.props.navigation}/> 
 
